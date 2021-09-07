@@ -17,6 +17,11 @@ public class PlayerController : MonoBehaviour
     void Update()
     {
         playerEntity.direction.x = Input.GetAxisRaw("Horizontal");
+        if (Input.GetKey("space") || Input.GetKey("z")) {
+            playerEntity.tryToJump = true;
+        } else {
+            playerEntity.tryToJump = false;
+        }
     }
 
 }
