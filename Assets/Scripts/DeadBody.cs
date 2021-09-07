@@ -6,9 +6,10 @@ public class DeadBody : MonoBehaviour
 {
     public Collider2D bodyCollider;
     public Rigidbody2D rb;
-    public Vector2 startVelocity;
+    [HideInInspector] public Vector2 startVelocity;
 
     [SerializeField] LayerMask ignoreLayerMask;
+    [SerializeField] float overlapRange = 0.5f;
 
     [Space(10)]
     [SerializeField] Vector2 timeBeforeFallStopMinMax;
@@ -19,18 +20,23 @@ public class DeadBody : MonoBehaviour
     {
         StartCoroutine(DisableFallAfterTime());
 
-        Collider2D colliderToIgnore = Physics2D.OverlapCircle(rb.position, 0.1f, ~ignoreLayerMask);
+        Collider2D colliderToIgnore = Physics2D.OverlapCircle(rb.position, overlapRange, ~ignoreLayerMask);
         if(colliderToIgnore != null)
         {
             Physics2D.IgnoreCollision(colliderToIgnore, bodyCollider, true);
-            Debug.Log($"{colliderToIgnore.name} collider ignored");
+            //Debug.Log($"{colliderToIgnore.name} collider ignored");
 
             // Set this collider as parent
             transform.SetParent(colliderToIgnore.transform);
         }
 
         rb.velocity = startVelocity;
-        Debug.Log($"grg {startVelocity}");
+    }
+
+    private void OnDrawGizmosSelected()
+    {
+        Gizmos.color = Color.black;
+        Gizmos.DrawWireSphere(rb.position, overlapRange);
     }
 
     IEnumerator DisableFallAfterTime()

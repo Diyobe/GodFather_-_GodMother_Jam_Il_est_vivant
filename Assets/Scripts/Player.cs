@@ -77,7 +77,6 @@ public class Player : MonoBehaviour
         //Debug.Log("Die");
 
         // Tp to last checkpoint
-        Debug.Log(lastVelocity);
         rb.velocity = Vector3.zero;
         rb.position = lastCheckpointPos;
 
