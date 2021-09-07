@@ -2,9 +2,9 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class CharacterController : MonoBehaviour
+public class PlayerController : MonoBehaviour
 {
-    [SerializeField] CharacterEntity characterEntity;
+    [SerializeField] PlayerEntity playerEntity;
 
 
     // Start is called before the first frame update
@@ -16,7 +16,7 @@ public class CharacterController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        characterEntity.direction.x = Input.GetAxisRaw("Horizontal");
+        playerEntity.direction.x = Input.GetAxisRaw("Horizontal");
     }
 
 }

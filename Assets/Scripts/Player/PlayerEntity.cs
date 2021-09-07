@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class CharacterEntity : MonoBehaviour {
+public class PlayerEntity : MonoBehaviour {
     [SerializeField] float maxSpeed;
     [SerializeField] float timeBeforeMaxSpeed;
     [SerializeField] float jumpSpeed;
@@ -32,6 +32,7 @@ public class CharacterEntity : MonoBehaviour {
     }
 
     private void Jump() {
+
 
     }
 }
