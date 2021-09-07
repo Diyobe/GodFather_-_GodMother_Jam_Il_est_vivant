@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 2940546393547726053}
   - component: {fileID: 2940546393547726058}
   - component: {fileID: 2940546393547726059}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Head
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -92,7 +92,7 @@ CircleCollider2D:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2940546393547726057}
-  m_Enabled: 0
+  m_Enabled: 1
   m_Density: 1
   m_Material: {fileID: 0}
   m_IsTrigger: 0
@@ -144,8 +144,8 @@ HingeJoint2D:
     m_MaximumMotorForce: 10000
   m_UseLimits: 1
   m_AngleLimits:
-    m_LowerAngle: 330
-    m_UpperAngle: 210
+    m_LowerAngle: 230
+    m_UpperAngle: -60.1
 --- !u!1 &2940546393804808063
 GameObject:
   m_ObjectHideFlags: 0
@@ -196,7 +196,8 @@ GameObject:
   - component: {fileID: 2940546393857285813}
   - component: {fileID: 2940546393857285819}
   - component: {fileID: 2940546393857285816}
-  m_Layer: 0
+  - component: {fileID: 6373728866692172580}
+  m_Layer: 7
   m_Name: LeftHand
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -313,6 +314,32 @@ HingeJoint2D:
   m_AngleLimits:
     m_LowerAngle: 57.6
     m_UpperAngle: 112.9
+--- !u!61 &6373728866692172580
+BoxCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2940546393857285822}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0.5, y: 0.5}
+    oldSize: {x: 1, y: 1}
+    newSize: {x: 1, y: 1}
+    adaptiveTilingThreshold: 0.5
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  serializedVersion: 2
+  m_Size: {x: 1, y: 1}
+  m_EdgeRadius: 0
 --- !u!1 &2940546394011345761
 GameObject:
   m_ObjectHideFlags: 0
@@ -325,7 +352,8 @@ GameObject:
   - component: {fileID: 2940546394011345763}
   - component: {fileID: 2940546394011345757}
   - component: {fileID: 2940546394011345760}
-  m_Layer: 0
+  - component: {fileID: 4067933378307988876}
+  m_Layer: 7
   m_Name: RightArm
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -442,6 +470,32 @@ HingeJoint2D:
   m_AngleLimits:
     m_LowerAngle: -20.3
     m_UpperAngle: -172.09
+--- !u!61 &4067933378307988876
+BoxCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2940546394011345761}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0.5, y: 0.5}
+    oldSize: {x: 1, y: 1}
+    newSize: {x: 1, y: 1}
+    adaptiveTilingThreshold: 0.5
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  serializedVersion: 2
+  m_Size: {x: 1, y: 1}
+  m_EdgeRadius: 0
 --- !u!1 &2940546394477026751
 GameObject:
   m_ObjectHideFlags: 0
@@ -454,7 +508,7 @@ GameObject:
   - component: {fileID: 2940546394477026750}
   - component: {fileID: 2940546394477026744}
   - component: {fileID: 2940546394477026747}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: body
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -561,7 +615,7 @@ CapsuleCollider2D:
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: 0.00000011920929, y: 0}
-  m_Size: {x: 1.0000001, y: 1}
+  m_Size: {x: 0.34, y: 1}
   m_Direction: 0
 --- !u!1 &2940546394750060586
 GameObject:
@@ -575,7 +629,8 @@ GameObject:
   - component: {fileID: 2940546394750060577}
   - component: {fileID: 2940546394750060583}
   - component: {fileID: 2940546394750060580}
-  m_Layer: 0
+  - component: {fileID: 7869079250383613259}
+  m_Layer: 7
   m_Name: RightLeg
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -692,6 +747,32 @@ HingeJoint2D:
   m_AngleLimits:
     m_LowerAngle: 10
     m_UpperAngle: 170
+--- !u!61 &7869079250383613259
+BoxCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2940546394750060586}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0.5, y: 0.5}
+    oldSize: {x: 1, y: 1}
+    newSize: {x: 1, y: 1}
+    adaptiveTilingThreshold: 0.5
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  serializedVersion: 2
+  m_Size: {x: 1, y: 1}
+  m_EdgeRadius: 0
 --- !u!1 &2940546395079964662
 GameObject:
   m_ObjectHideFlags: 0
@@ -704,7 +785,8 @@ GameObject:
   - component: {fileID: 2940546395079964653}
   - component: {fileID: 2940546395079964659}
   - component: {fileID: 2940546395079964656}
-  m_Layer: 0
+  - component: {fileID: 4861730248714728042}
+  m_Layer: 7
   m_Name: RightHand
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -821,6 +903,32 @@ HingeJoint2D:
   m_AngleLimits:
     m_LowerAngle: -57.6
     m_UpperAngle: -112.9
+--- !u!61 &4861730248714728042
+BoxCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2940546395079964662}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0.5, y: 0.5}
+    oldSize: {x: 1, y: 1}
+    newSize: {x: 1, y: 1}
+    adaptiveTilingThreshold: 0.5
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  serializedVersion: 2
+  m_Size: {x: 1, y: 1}
+  m_EdgeRadius: 0
 --- !u!1 &2940546395544744144
 GameObject:
   m_ObjectHideFlags: 0
@@ -833,7 +941,8 @@ GameObject:
   - component: {fileID: 2940546395544744143}
   - component: {fileID: 2940546395544744141}
   - component: {fileID: 2940546395544744146}
-  m_Layer: 0
+  - component: {fileID: 6438747280244584183}
+  m_Layer: 7
   m_Name: LeftLeg
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -950,6 +1059,32 @@ HingeJoint2D:
   m_AngleLimits:
     m_LowerAngle: 10
     m_UpperAngle: 170
+--- !u!61 &6438747280244584183
+BoxCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2940546395544744144}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0.5, y: 0.5}
+    oldSize: {x: 1, y: 1}
+    newSize: {x: 1, y: 1}
+    adaptiveTilingThreshold: 0.5
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  serializedVersion: 2
+  m_Size: {x: 1, y: 1}
+  m_EdgeRadius: 0
 --- !u!1 &2940546395599041467
 GameObject:
   m_ObjectHideFlags: 0
@@ -962,7 +1097,8 @@ GameObject:
   - component: {fileID: 2940546395599041462}
   - component: {fileID: 2940546395599041460}
   - component: {fileID: 2940546395599041461}
-  m_Layer: 0
+  - component: {fileID: 980300235691698460}
+  m_Layer: 7
   m_Name: 'LeftArm '
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1079,3 +1215,29 @@ HingeJoint2D:
   m_AngleLimits:
     m_LowerAngle: 20.3
     m_UpperAngle: 172.09
+--- !u!61 &980300235691698460
+BoxCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2940546395599041467}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0.5, y: 0.5}
+    oldSize: {x: 1, y: 1}
+    newSize: {x: 1, y: 1}
+    adaptiveTilingThreshold: 0.5
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  serializedVersion: 2
+  m_Size: {x: 1, y: 1}
+  m_EdgeRadius: 0
