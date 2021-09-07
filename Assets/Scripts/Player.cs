@@ -5,26 +5,35 @@ using UnityEngine;
 public class Player : MonoBehaviour
 {
     Rigidbody2D rb;
+    Vector2 lastVelocity;
 
     [SerializeField] private Vector3 lastCheckpointPos;
 
     [Tooltip("If the distance between player and last checkpoint bigger than this value --> set new checkpoint on current player position")]
     public float checkpointIntervalMax = 10f;
 
-    [SerializeField] GameObject deadBodyPrefab;
+    [SerializeField] DeadBody deadBodyPrefab;
+    private PlayerEntity playerEntity;
 
     // Start is called before the first frame update
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
+        playerEntity = GetComponent<PlayerEntity>();
+        lastCheckpointPos = transform.position;
     }
 
     private void Update()
     {
-        if(Vector3.Distance(lastCheckpointPos, transform.position) >= checkpointIntervalMax)
+        if (Vector3.Distance(lastCheckpointPos, transform.position) >= checkpointIntervalMax)
         {
             SetCheckpoint(transform.position);
         }
+    }
+
+    private void FixedUpdate()
+    {
+        lastVelocity = rb.velocity;
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
@@ -39,7 +48,16 @@ public class Player : MonoBehaviour
                 break;
         }
     }
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        if (collision.transform.CompareTag("Death")) Die();
+    }
 
+    private void OnDrawGizmosSelected()
+    {
+        Gizmos.color = Color.green;
+        Gizmos.DrawWireSphere(transform.position, checkpointIntervalMax);
+    }
     private void SetCheckpoint(Transform checkpoint)
     {
         //Debug.Log("Passed checkpoint");
@@ -50,19 +68,21 @@ public class Player : MonoBehaviour
     }
     private void SetCheckpoint(Vector3 newCheckpointPos)
     {
-        Debug.Log("Force new checkpoint because of distance");
+        //Debug.Log("Force new checkpoint because of distance");
         lastCheckpointPos = newCheckpointPos;
     }
 
     private void Die()
     {
-        Debug.Log("Die");
+        //Debug.Log("Die");
 
         // Tp to last checkpoint
         rb.velocity = Vector3.zero;
         rb.position = lastCheckpointPos;
 
         // Instantiate dead body
-        Instantiate(deadBodyPrefab, transform);
+        DeadBody deadBody = Instantiate(deadBodyPrefab, transform.position, transform.rotation);
+        deadBody.startVelocity = lastVelocity;
+        deadBody.playerEntity = playerEntity;
     }
 }
