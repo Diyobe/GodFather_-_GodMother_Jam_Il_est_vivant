@@ -243,7 +243,6 @@ MonoBehaviour:
   timeBeforeMaxSpeed: 1
   jumpSpeed: 0
   ratioComeBack: 1
-  rb: {fileID: 0}
   direction: {x: 0, y: 0}
 --- !u!114 &366283285
 MonoBehaviour:
@@ -257,7 +256,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5d71437638306ee40b3d781a4306db51, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  characterEntity: {fileID: 366283284}
+  playerEntity: {fileID: 366283284}
 --- !u!50 &366283286
 Rigidbody2D:
   serializedVersion: 4
