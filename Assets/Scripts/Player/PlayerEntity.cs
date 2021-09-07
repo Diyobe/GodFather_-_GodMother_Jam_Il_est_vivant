@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class PlayerEntity : MonoBehaviour {
-    [SerializeField] float maxSpeed;
+    public float maxSpeed;
     [SerializeField] float timeBeforeMaxSpeed;
     [SerializeField] float jumpSpeed;
     [SerializeField] float ratioComeBack;
