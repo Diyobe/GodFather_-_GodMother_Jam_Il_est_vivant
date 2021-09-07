@@ -17,6 +17,7 @@ public class Player : MonoBehaviour
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
+        lastCheckpointPos = transform.position;
     }
 
     private void Update()
@@ -39,7 +40,16 @@ public class Player : MonoBehaviour
                 break;
         }
     }
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        if (collision.transform.CompareTag("Death")) Die();
+    }
 
+    private void OnDrawGizmosSelected()
+    {
+        Gizmos.color = Color.green;
+        Gizmos.DrawWireSphere(transform.position, checkpointIntervalMax);
+    }
     private void SetCheckpoint(Transform checkpoint)
     {
         //Debug.Log("Passed checkpoint");
@@ -59,10 +69,16 @@ public class Player : MonoBehaviour
         Debug.Log("Die");
 
         // Tp to last checkpoint
+        Vector3 playerVelocity = rb.velocity;
         rb.velocity = Vector3.zero;
         rb.position = lastCheckpointPos;
 
         // Instantiate dead body
-        Instantiate(deadBodyPrefab, transform);
+        GameObject go = Instantiate(deadBodyPrefab, transform.position, transform.rotation);
+        Rigidbody2D deadBodyrb;
+        if(go.TryGetComponent<Rigidbody2D>(out deadBodyrb))
+        {
+            deadBodyrb.velocity = playerVelocity;
+        }
     }
 }
