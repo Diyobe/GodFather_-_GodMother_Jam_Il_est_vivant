@@ -3,20 +3,23 @@
 --- !u!78 &1
 TagManager:
   serializedVersion: 2
-  tags: []
+  tags:
+  - Checkpoint
+  - Death
+  - Ground
   layers:
   - Default
   - TransparentFX
   - Ignore Raycast
-  - 
+  - Player
   - Water
   - UI
   - 
+  - Ragdoll parts
+  - Ragdoll body
+  - Ragdoll head
   - 
-  - 
-  - 
-  - 
-  - 
+  - Ground
   - 
   - 
   - 
