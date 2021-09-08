@@ -48,6 +48,7 @@ public class Player : MonoBehaviour
                 SetCheckpoint(collision.transform);
                 break;
             case "Death":
+                SoundManager.Instance.PlaySpikeDeathSound();
                 Die();
                 break;
         }
