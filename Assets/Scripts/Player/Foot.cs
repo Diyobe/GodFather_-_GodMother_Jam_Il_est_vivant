@@ -5,11 +5,11 @@ using UnityEngine;
 public class Foot : MonoBehaviour
 {
     [SerializeField] PlayerEntity playerEntity;
-    private void OnCollisionEnter2D(Collision2D collision) {
+    private void OnTriggerEnter2D(Collider2D collision) {
         playerEntity.isGrounded++;
     }
 
-    private void OnCollisionExit2D(Collision2D collision) {
+    private void OnTriggerExit2D(Collider2D collision) {
         playerEntity.isGrounded = playerEntity.isGrounded - 1 < 0 ? 0 : playerEntity.isGrounded - 1;
     }
 }
