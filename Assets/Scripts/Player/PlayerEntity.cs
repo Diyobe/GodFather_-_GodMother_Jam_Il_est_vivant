@@ -27,6 +27,7 @@ public class PlayerEntity : MonoBehaviour {
     Vector2 jumpForce = Vector2.zero;
 
     private Rigidbody2D rb;
+    [SerializeField] SpriteRenderer sp;
 
     [HideInInspector] public Vector2 direction;
     void Start() {
@@ -43,7 +44,7 @@ public class PlayerEntity : MonoBehaviour {
     private void Move() {
         Vector2 currentSpeed = rb.velocity;
         if (isIntheAir == 0) {
-            if (direction.x == 0) {
+            if (direction.x == 0 && currentSpeed.x != 0) {
                 currentSpeed.x += -Mathf.Sign(currentSpeed.x) * Time.fixedDeltaTime * airFriction;
                 if (-slowSpeed < currentSpeed.x && currentSpeed.x < slowSpeed) {
                     currentSpeed.x = 0;
@@ -51,9 +52,10 @@ public class PlayerEntity : MonoBehaviour {
             } else {
                 currentSpeed.x += direction.x * Time.fixedDeltaTime * maxSpeedInAir / timeBeforeMaxSpeed;
                 currentSpeed.x = Mathf.Clamp(currentSpeed.x, -maxSpeedInAir, maxSpeedInAir);
+                sp.flipX = Mathf.Sign(direction.x) == 1 ? false : true;
             }
         } else {
-            if (direction.x == 0) {
+            if (direction.x == 0 && currentSpeed.x != 0) {
                 currentSpeed.x += -Mathf.Sign(currentSpeed.x) * Time.fixedDeltaTime * friction;
                 if (-slowSpeed < currentSpeed.x && currentSpeed.x < slowSpeed) {
                     currentSpeed.x = 0;
@@ -61,6 +63,7 @@ public class PlayerEntity : MonoBehaviour {
             } else {
                 currentSpeed.x += Mathf.Sign(currentSpeed.x) == Mathf.Sign(direction.x) ? direction.x * Time.fixedDeltaTime * maxSpeed / timeBeforeMaxSpeed : direction.x * Time.fixedDeltaTime * maxSpeed / timeBeforeMaxSpeed * ratioComeBack;
                 currentSpeed.x = Mathf.Clamp(currentSpeed.x, -maxSpeed, maxSpeed);
+                sp.flipX = Mathf.Sign(direction.x) == 1 ? false : true;
             }
         }
         currentSpeed += Mathf.Sign(currentSpeed.x) == Mathf.Sign(direction.x) ? direction * Time.fixedDeltaTime * maxSpeed / timeBeforeMaxSpeed : direction * Time.fixedDeltaTime * maxSpeed / timeBeforeMaxSpeed * ratioComeBack;
