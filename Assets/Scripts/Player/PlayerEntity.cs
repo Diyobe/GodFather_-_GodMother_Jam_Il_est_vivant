@@ -52,7 +52,9 @@ public class PlayerEntity : MonoBehaviour {
             } else {
                 currentSpeed.x += direction.x * Time.fixedDeltaTime * maxSpeedInAir / timeBeforeMaxSpeed;
                 currentSpeed.x = Mathf.Clamp(currentSpeed.x, -maxSpeedInAir, maxSpeedInAir);
-                sp.flipX = Mathf.Sign(direction.x) == 1 ? false : true;
+                if (direction.x != 0) {
+                    sp.flipX = Mathf.Sign(direction.x) == 1 ? false : true;
+                }
             }
         } else {
             if (direction.x == 0 && currentSpeed.x != 0) {
@@ -63,7 +65,9 @@ public class PlayerEntity : MonoBehaviour {
             } else {
                 currentSpeed.x += Mathf.Sign(currentSpeed.x) == Mathf.Sign(direction.x) ? direction.x * Time.fixedDeltaTime * maxSpeed / timeBeforeMaxSpeed : direction.x * Time.fixedDeltaTime * maxSpeed / timeBeforeMaxSpeed * ratioComeBack;
                 currentSpeed.x = Mathf.Clamp(currentSpeed.x, -maxSpeed, maxSpeed);
-                sp.flipX = Mathf.Sign(direction.x) == 1 ? false : true;
+                if (direction.x != 0) {
+                    sp.flipX = Mathf.Sign(direction.x) == 1 ? false : true;
+                }
             }
         }
         currentSpeed += Mathf.Sign(currentSpeed.x) == Mathf.Sign(direction.x) ? direction * Time.fixedDeltaTime * maxSpeed / timeBeforeMaxSpeed : direction * Time.fixedDeltaTime * maxSpeed / timeBeforeMaxSpeed * ratioComeBack;
