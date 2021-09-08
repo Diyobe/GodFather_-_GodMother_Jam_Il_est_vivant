@@ -9,6 +9,10 @@ public class Player : MonoBehaviour
 
     [SerializeField] private Vector3 lastCheckpointPos;
 
+
+    [SerializeField] private GameObject[] bloodSplats;
+    [SerializeField] private GameObject bloodParticle;
+
     [Tooltip("If the distance between player and last checkpoint bigger than this value --> set new checkpoint on current player position")]
     public float checkpointIntervalMax = 10f;
 
@@ -75,6 +79,8 @@ public class Player : MonoBehaviour
     private void Die()
     {
         //Debug.Log("Die");
+        Instantiate(bloodSplats[Random.Range(0, bloodSplats.Length)], transform.position, Quaternion.identity);
+        Instantiate(bloodParticle, transform.position, Quaternion.identity);
 
         // Tp to last checkpoint
         rb.velocity = Vector3.zero;
