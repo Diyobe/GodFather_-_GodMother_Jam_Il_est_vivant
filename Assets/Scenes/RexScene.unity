@@ -206,6 +206,11 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!212 &34436956 stripped
+SpriteRenderer:
+  m_CorrespondingSourceObject: {fileID: 3733342498089262771, guid: 2bf06a6b261ab8844beb1b50e9ad6bb8, type: 3}
+  m_PrefabInstance: {fileID: 3733342496779932903}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &489054192
 GameObject:
   m_ObjectHideFlags: 0
@@ -874,7 +879,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &1835553100
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1026,7 +1031,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!212 &2056459918
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -1146,6 +1151,14 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 3733342496854093529, guid: 2bf06a6b261ab8844beb1b50e9ad6bb8, type: 3}
+      propertyPath: m_IsTrigger
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3733342497102175987, guid: 2bf06a6b261ab8844beb1b50e9ad6bb8, type: 3}
+      propertyPath: sp.Array.data[0]
+      value: 
+      objectReference: {fileID: 34436956}
     - target: {fileID: 3733342497102175988, guid: 2bf06a6b261ab8844beb1b50e9ad6bb8, type: 3}
       propertyPath: m_Name
       value: Player
