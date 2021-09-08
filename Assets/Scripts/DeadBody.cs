@@ -54,8 +54,8 @@ public class DeadBody : MonoBehaviour
         }
         rb.gravityScale = 0;
 
-        //rb.constraints = RigidbodyConstraints2D.FreezeAll;
-        rb.constraints = RigidbodyConstraints2D.FreezePositionX | RigidbodyConstraints2D.FreezeRotation;
+        rb.constraints = RigidbodyConstraints2D.FreezeAll;
+        //rb.constraints = RigidbodyConstraints2D.FreezePositionX | RigidbodyConstraints2D.FreezeRotation;
 
     }
 
