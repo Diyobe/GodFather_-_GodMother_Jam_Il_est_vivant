@@ -55,6 +55,16 @@ public class DeadBody : MonoBehaviour
         rb.gravityScale = 0;
 
         rb.constraints = RigidbodyConstraints2D.FreezeAll;
+        //rb.constraints = RigidbodyConstraints2D.FreezePositionX | RigidbodyConstraints2D.FreezeRotation;
 
+    }
+
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        if(collision.gameObject.tag == "Player")
+        {
+            Debug.Log("Collide with player");
+            transform.position = new Vector2(transform.position.x, transform.position.y - 1);
+        }
     }
 }
