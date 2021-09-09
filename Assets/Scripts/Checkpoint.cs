@@ -4,33 +4,32 @@ using UnityEngine;
 
 public class Checkpoint : MonoBehaviour
 {
-    [SerializeField] Transform respawnPoint;
+    public Transform respawnPoint;
     [SerializeField] Animation respawnAnimation;
 
     public void UseCheckpoint(Rigidbody2D playerRb)
     {
         playerRb.velocity = Vector3.zero;
-        playerRb.position = respawnPoint.position;
 
-        playerRb.gameObject.SetActive(false);
-
-        if (respawnAnimation)
-        {
-            respawnAnimation.gameObject.SetActive(true);
-            respawnAnimation.Play();
-        } 
+        StartCoroutine(StartAnimation(playerRb));
     }
 
-    public void StartRespawnAnimation(Player player)
+    IEnumerator StartAnimation(Rigidbody2D playerRb)
     {
-        StartCoroutine(StartAnimation(player));
-    }
+        GameObject player = playerRb.gameObject;
+        player.SetActive(false);
 
-    IEnumerator StartAnimation(Player player)
-    {
-        respawnAnimation.gameObject.SetActive(true);
+
         if (SoundManager.Instance != null) SoundManager.Instance.PlayRespawnSound();
+
+        respawnAnimation.gameObject.SetActive(true);
+        respawnAnimation.Play();
         yield return new WaitForSeconds(respawnAnimation.clip.length);
-        player.gameObject.SetActive(true);
+        respawnAnimation.gameObject.SetActive(false);
+
+        player.transform.position = respawnPoint.position;
+        player.transform.rotation = Quaternion.identity;
+
+        player.SetActive(true);
     }
 }

@@ -116,16 +116,16 @@ public class Player : MonoBehaviour
         SoundManager.Instance.PlaySpikeDeathSound();
 
         //Debug.Log("Die");
-        if (bloodSplats.Length > 0) Instantiate(bloodSplats[Random.Range(0, bloodSplats.Length)], transform.position, Quaternion.identity);
-        if (bloodParticle) Instantiate(bloodParticle, transform.position, Quaternion.identity);
+        if (bloodSplats.Length > 0) Destroy(Instantiate(bloodSplats[Random.Range(0, bloodSplats.Length)], transform.position, Quaternion.identity), 15f);
+        if (bloodParticle) Destroy(Instantiate(bloodParticle, transform.position, Quaternion.identity), 15f);
+
+        camZoom.StartRespawn(lastCheckpointPos.respawnPoint.gameObject);
+
+        SpawnDeadBody(immobileDeadBody, deadBodyCanBePushed);
 
         // Use last checkpoint
         if (lastCheckpointPos != null)
         lastCheckpointPos.UseCheckpoint(rb);
-
-        camZoom.isRespawnAnimation = true;
-
-        SpawnDeadBody(immobileDeadBody, deadBodyCanBePushed);
     }
     private void SpawnDeadBody(bool immobile, bool canBePushed)
     {
