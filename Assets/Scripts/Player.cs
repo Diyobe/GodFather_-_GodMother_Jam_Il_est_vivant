@@ -4,6 +4,9 @@ using UnityEngine;
 
 public class Player : MonoBehaviour
 {
+    public static Player instance;
+    private void Awake() => instance = this;
+
     Rigidbody2D rb;
     Vector2 lastVelocity;
 
@@ -19,8 +22,11 @@ public class Player : MonoBehaviour
     [SerializeField] DeadBody deadBodyPrefab;
     private PlayerEntity playerEntity;
 
-    [SerializeField] float deadBodyPushForce= 1f;
+    [SerializeField] float deadBodyPushForce = 1f;
     private Transform lastDeadBodyPushed;
+
+    [Space(10), SerializeField, InspectorName("Player mask")] LayerMask playerMaskSezrializationHelper;
+    public static LayerMask playerMask;
 
     // Start is called before the first frame update
     void Start()
@@ -28,6 +34,8 @@ public class Player : MonoBehaviour
         rb = GetComponent<Rigidbody2D>();
         playerEntity = GetComponent<PlayerEntity>();
         lastCheckpointPos = transform.position;
+
+        playerMask = playerMaskSezrializationHelper;
     }
 
     private void Update()
@@ -50,13 +58,14 @@ public class Player : MonoBehaviour
             case "Checkpoint":
                 SetCheckpoint(collision.transform);
                 break;
+            case "Boulder":
+                Die(true);
+                break;
             case "Spikes":
-                Die();
-                SpawnDeadBody(true);
+                Die(true, true);
                 break;
             case "Death":
-                Die();
-                SpawnDeadBody(false);
+                Die(false);
                 break;
         }
     }
@@ -65,20 +74,21 @@ public class Player : MonoBehaviour
         switch (collision.transform.tag)
         {
             case "Dead body":
-                if(collision.transform != lastDeadBodyPushed)
+                if (collision.transform != lastDeadBodyPushed)
                 {
                     DeadBody deadBody = collision.transform.parent.GetComponent<DeadBody>();
                     deadBody.SkewerIfPossible((Vector2)(collision.transform.position - transform.position).normalized * deadBodyPushForce);
                     lastDeadBodyPushed = collision.transform;
                 }
                 break;
+            case "Boulder":
+                Die(true);
+                break;
             case "Spikes":
-                Die();
-                SpawnDeadBody(true);
+                Die(true, true);
                 break;
             case "Death":
-                Die();
-                SpawnDeadBody(false);
+                Die(false);
                 break;
         }
     }
@@ -97,7 +107,7 @@ public class Player : MonoBehaviour
         lastCheckpointPos = newCheckpointPos;
     }
 
-    private void Die()
+    public void Die(bool immobileDeadBody, bool deadBodyCanBePushed = false)
     {
         SoundManager.Instance.PlaySpikeDeathSound();
 
@@ -109,12 +119,14 @@ public class Player : MonoBehaviour
         rb.velocity = Vector3.zero;
         rb.position = lastCheckpointPos;
 
+        SpawnDeadBody(immobileDeadBody, deadBodyCanBePushed);
     }
-    private void SpawnDeadBody(bool immobile)
+    private void SpawnDeadBody(bool immobile, bool canBePushed)
     {
         // Instantiate dead body
         DeadBody deadBody = Instantiate(deadBodyPrefab, transform.position, transform.rotation);
         deadBody.stayImmobile = immobile;
+        deadBody.canBePushed = canBePushed;
         deadBody.startVelocity = lastVelocity;
         deadBody.playerEntity = playerEntity;
     }
