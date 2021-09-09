@@ -26,21 +26,18 @@ public class EnvironmentManager : MonoBehaviour
         DontDestroyOnLoad(gameObject);
     }
 
+    private void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.Space))
+            PlayAllEnvironmentDeathAnim();
+    }
+
     public void PlayAllEnvironmentDeathAnim()
     {
 
         foreach (AnimatedEnvironment environment in animatedEnvironments)
         {
             environment.PlayDeathAnimation();
-        }
-    }
-
-    public void StopAllEnvironmentDeathAnim()
-    {
-
-        foreach (AnimatedEnvironment environment in animatedEnvironments)
-        {
-            environment.StopDeathAnimation();
         }
     }
 }
