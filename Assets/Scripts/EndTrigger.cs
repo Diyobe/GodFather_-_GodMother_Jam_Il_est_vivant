@@ -22,18 +22,24 @@ public class EndTrigger : MonoBehaviour
         if (!trigger && collision.CompareTag("Player"))
         {
             trigger = true;
-            collision.gameObject.SetActive(false);
-            Trigger();
+            Player.instance.gameObject.SetActive(false);
+            StartCoroutine(StartEndAnimation());
         }
     }
 
-    void Trigger()
+    IEnumerator StartEndAnimation()
     {
-        Camera.main.GetComponent<CameraController>().SetTarget(newCameraTarget ?? transform);
+        Camera cam = Camera.main;
+        cam.GetComponent<CameraController>().SetTarget(newCameraTarget ?? transform);
 
         if (toEnable) toEnable.SetActive(true);
         if (toDisable) toDisable.SetActive(false);
 
         animator.enabled = true;
+        animator.SetTrigger("start_grinder");
+
+        yield return new WaitForSeconds(1.5f);
+
+        cam.GetComponent<CameraZoom>().ZoomOut();
     }
 }
