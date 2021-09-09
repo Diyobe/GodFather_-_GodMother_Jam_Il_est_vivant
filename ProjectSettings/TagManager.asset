@@ -9,6 +9,7 @@ TagManager:
   - Ground
   - Dead body
   - Spikes
+  - Boulder
   layers:
   - Default
   - TransparentFX

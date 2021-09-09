@@ -19,6 +19,7 @@ public class DeadBody : MonoBehaviour
     [SerializeField] GameObject[] bloodSplats;
 
     [HideInInspector] public bool stayImmobile;
+    [HideInInspector] public bool canBePushed;
     [HideInInspector] public PlayerEntity playerEntity; // just used to get the max horizontal speed
 
     private void Start()
@@ -34,6 +35,8 @@ public class DeadBody : MonoBehaviour
             for(int i = 1; i < collidersFound.Length; i++)
             {
                 Collider2D collider = collidersFound[i];
+                if (collider.isTrigger) continue;
+
                 float distance = Vector3.Distance(collider.ClosestPoint(rb.position), rb.position);
                 if(distance < shortestDistance)
                 {
@@ -82,7 +85,7 @@ public class DeadBody : MonoBehaviour
 
     public void SkewerIfPossible(Vector2 force)
     {
-        if (stayImmobile) StartCoroutine(Skewer(force));
+        if (canBePushed) StartCoroutine(Skewer(force));
     }
     IEnumerator Skewer(Vector2 force)
     {

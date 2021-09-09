@@ -5,7 +5,7 @@ using UnityEngine;
 public class SoundManager : MonoBehaviour
 {
     [SerializeField] AudioSource[] spikeDeath;
-
+    [SerializeField] AudioSource respawnSound;
 
     private static SoundManager _instance;
 
@@ -31,5 +31,9 @@ public class SoundManager : MonoBehaviour
     {
         if(spikeDeath.Length > 0)
         spikeDeath[Random.Range(0, spikeDeath.Length)].Play();
+    }
+    public void PlayRespawnSound()
+    {
+        if (respawnSound) respawnSound.Play();
     }
 }
