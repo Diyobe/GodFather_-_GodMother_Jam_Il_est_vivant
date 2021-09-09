@@ -58,7 +58,8 @@ public class Rabbit : MonoBehaviour {
     }
 
     private void OnCollisionEnter2D(Collision2D collision) {
-        if (collision.gameObject.tag == "Death") {
+        string tag = collision.gameObject.tag;
+        if (tag == "Death" || tag == "Spikes" || tag == "Boulder") {
             Dead();
         }
     }
