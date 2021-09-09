@@ -13,11 +13,14 @@ public class Player : MonoBehaviour
     [SerializeField] private GameObject[] bloodSplats;
     [SerializeField] private GameObject bloodParticle;
 
-    [Tooltip("If the distance between player and last checkpoint bigger than this value --> set new checkpoint on current player position")]
-    public float checkpointIntervalMax = 10f;
+    //[Tooltip("If the distance between player and last checkpoint bigger than this value --> set new checkpoint on current player position")]
+    //public float checkpointIntervalMax = 10f;
 
     [SerializeField] DeadBody deadBodyPrefab;
     private PlayerEntity playerEntity;
+
+    [SerializeField] float deadBodyPushForce= 1f;
+    private Transform lastDeadBodyPushed;
 
     // Start is called before the first frame update
     void Start()
@@ -29,9 +32,9 @@ public class Player : MonoBehaviour
 
     private void Update()
     {
-        if (Vector3.Distance(lastCheckpointPos, transform.position) >= checkpointIntervalMax)
+        if (PlayerController.JumpInput)
         {
-            SetCheckpoint(transform.position);
+            lastDeadBodyPushed = null;
         }
     }
 
@@ -47,22 +50,39 @@ public class Player : MonoBehaviour
             case "Checkpoint":
                 SetCheckpoint(collision.transform);
                 break;
-            case "Death":
-                SoundManager.Instance.PlaySpikeDeathSound();
+            case "Spikes":
                 Die();
+                SpawnDeadBody(true);
+                break;
+            case "Death":
+                Die();
+                SpawnDeadBody(false);
                 break;
         }
     }
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        if (collision.transform.CompareTag("Death")) Die();
+        switch (collision.transform.tag)
+        {
+            case "Dead body":
+                if(collision.transform != lastDeadBodyPushed)
+                {
+                    DeadBody deadBody = collision.transform.parent.GetComponent<DeadBody>();
+                    deadBody.SkewerIfPossible((Vector2)(collision.transform.position - transform.position).normalized * deadBodyPushForce);
+                    lastDeadBodyPushed = collision.transform;
+                }
+                break;
+            case "Spikes":
+                Die();
+                SpawnDeadBody(true);
+                break;
+            case "Death":
+                Die();
+                SpawnDeadBody(false);
+                break;
+        }
     }
 
-    private void OnDrawGizmosSelected()
-    {
-        Gizmos.color = Color.green;
-        Gizmos.DrawWireSphere(transform.position, checkpointIntervalMax);
-    }
     private void SetCheckpoint(Transform checkpoint)
     {
         //Debug.Log("Passed checkpoint");
@@ -79,16 +99,22 @@ public class Player : MonoBehaviour
 
     private void Die()
     {
+        SoundManager.Instance.PlaySpikeDeathSound();
+
         //Debug.Log("Die");
-        Instantiate(bloodSplats[Random.Range(0, bloodSplats.Length)], transform.position, Quaternion.identity);
-        Instantiate(bloodParticle, transform.position, Quaternion.identity);
+        if (bloodSplats.Length > 0) Instantiate(bloodSplats[Random.Range(0, bloodSplats.Length)], transform.position, Quaternion.identity);
+        if (bloodParticle) Instantiate(bloodParticle, transform.position, Quaternion.identity);
 
         // Tp to last checkpoint
         rb.velocity = Vector3.zero;
         rb.position = lastCheckpointPos;
 
+    }
+    private void SpawnDeadBody(bool immobile)
+    {
         // Instantiate dead body
         DeadBody deadBody = Instantiate(deadBodyPrefab, transform.position, transform.rotation);
+        deadBody.stayImmobile = immobile;
         deadBody.startVelocity = lastVelocity;
         deadBody.playerEntity = playerEntity;
     }

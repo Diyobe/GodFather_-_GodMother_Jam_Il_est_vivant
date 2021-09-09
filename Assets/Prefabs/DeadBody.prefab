@@ -205,6 +205,7 @@ MonoBehaviour:
     m_Bits: 2990
   overlapRange: 0.8
   timeBeforeFallStopMinMax: {x: 0.1, y: 0.2}
+  stayImmobile: 0
   playerEntity: {fileID: 0}
 --- !u!1 &2940546393857285822
 GameObject:
@@ -532,7 +533,7 @@ GameObject:
   - component: {fileID: 2940546394477026747}
   m_Layer: 8
   m_Name: body
-  m_TagString: Untagged
+  m_TagString: Dead body
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

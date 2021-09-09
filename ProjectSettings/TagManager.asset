@@ -7,6 +7,8 @@ TagManager:
   - Checkpoint
   - Death
   - Ground
+  - Dead body
+  - Spikes
   layers:
   - Default
   - TransparentFX

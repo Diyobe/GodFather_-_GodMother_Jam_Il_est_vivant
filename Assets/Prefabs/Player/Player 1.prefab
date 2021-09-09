@@ -613,7 +613,7 @@ MonoBehaviour:
   lastCheckpointPos: {x: 0, y: 0, z: 0}
   bloodSplats: []
   bloodParticle: {fileID: 0}
-  checkpointIntervalMax: 10
+  checkpointIntervalMax: 30
   deadBodyPrefab: {fileID: 2963285288185818766, guid: 97b28b9114a62d444afeec2a07b4f177, type: 3}
 --- !u!1 &7889605084066534784
 GameObject:
