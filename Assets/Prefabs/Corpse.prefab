@@ -1375,6 +1375,9 @@ MonoBehaviour:
     m_Bits: 2952
   overlapRange: 5
   timeBeforeFallStopMinMax: {x: 0.1, y: 0.2}
+  bloodParticles: {fileID: 3315613793663920810, guid: c711a49fded2618438f15007f454a4d9, type: 3}
+  bloodSplats:
+  - {fileID: 7946271164395906478, guid: 43aece316c46420499b661255a31a421, type: 3}
   stayImmobile: 0
   playerEntity: {fileID: 0}
 --- !u!95 &5848165863340547354

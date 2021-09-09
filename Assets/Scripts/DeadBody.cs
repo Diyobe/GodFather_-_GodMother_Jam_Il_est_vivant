@@ -14,6 +14,10 @@ public class DeadBody : MonoBehaviour
     [Space(10)]
     [SerializeField] Vector2 timeBeforeFallStopMinMax;
 
+    [Space(10)]
+    [SerializeField] GameObject bloodParticles;
+    [SerializeField] GameObject[] bloodSplats;
+
     [HideInInspector] public bool stayImmobile;
     [HideInInspector] public PlayerEntity playerEntity; // just used to get the max horizontal speed
 
@@ -87,6 +91,9 @@ public class DeadBody : MonoBehaviour
 
         Vector2 startPos = transform.position;
         Vector2 aimedPos = (Vector2)transform.position + force * duration;
+
+        Instantiate(bloodSplats[Random.Range(0, bloodSplats.Length)], transform.position, transform.rotation);
+        Instantiate(bloodParticles, transform.position, transform.rotation);
 
         while (timer < duration)
         {
