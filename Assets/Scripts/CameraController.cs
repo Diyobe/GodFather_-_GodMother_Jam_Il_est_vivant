@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class CameraController : MonoBehaviour
 {
-    [SerializeField] Transform target;
+    Transform target;
     [Range(1,10)]
     [SerializeField] float smoothSpeed = 5f;
 
@@ -13,6 +13,7 @@ public class CameraController : MonoBehaviour
     private void Start()
     {
         startZPosition = transform.position.z;
+        target = Player.instance.transform;
     }
 
     // Update is called once per frame
