@@ -231,6 +231,7 @@ MonoBehaviour:
   frontIsStillGrounded: 0
   direction: {x: 0, y: 0}
   pictureCute: {fileID: 21300000, guid: c748041fa5c9e7c43970c524a6a009a7, type: 3}
+  normalPicture: {fileID: 21300000, guid: 65c8480cb41ef8b498f872d6d976047d, type: 3}
   deadBody: {fileID: 8478435429960833578, guid: c19a91c643bd2764eb148c9473fc9d51, type: 3}
   anim: {fileID: 1835553105}
   sp: {fileID: 3282384487480846984}
@@ -250,7 +251,7 @@ BoxCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: -0.026104093, y: -0.33885014}
+  m_Offset: {x: -0.026104093, y: -0.5123323}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
@@ -261,7 +262,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 2.7522662, y: 1.4749568}
+  m_Size: {x: 2.7522662, y: 1.1279924}
   m_EdgeRadius: 0
 --- !u!95 &1835553105
 Animator:

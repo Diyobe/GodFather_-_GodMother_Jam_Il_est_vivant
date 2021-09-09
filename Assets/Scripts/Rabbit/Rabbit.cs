@@ -14,6 +14,7 @@ public class Rabbit : MonoBehaviour {
     public Vector2 direction;
 
     [SerializeField] Sprite pictureCute;
+    [SerializeField] Sprite normalPicture;
     [SerializeField] GameObject deadBody;
     [SerializeField] Animator anim;
     [SerializeField] SpriteRenderer sp;
@@ -33,9 +34,9 @@ public class Rabbit : MonoBehaviour {
     }
 
     void FixedUpdate() {
+        isInTheAir();
         Move();
         DoINeedJump();
-        isInTheAir();
     }
 
     void Jump() {
@@ -76,6 +77,7 @@ public class Rabbit : MonoBehaviour {
             anim.SetBool("Jump", true);
         } else {
             anim.SetBool("Jump", false);
+            sp.sprite = normalPicture;
         }
     }
 }
