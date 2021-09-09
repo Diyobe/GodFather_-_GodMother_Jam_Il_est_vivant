@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 1614087555691160356}
   m_Layer: 0
   m_Name: NormalBackArm
-  m_TagString: Untagged
+  m_TagString: Dead body
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -94,7 +94,7 @@ GameObject:
   - component: {fileID: 2429825663599702547}
   m_Layer: 0
   m_Name: NormalHead
-  m_TagString: Untagged
+  m_TagString: Dead body
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -176,7 +176,7 @@ GameObject:
   - component: {fileID: 5714913259120042861}
   m_Layer: 0
   m_Name: NormalFrontLeg
-  m_TagString: Untagged
+  m_TagString: Dead body
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -258,7 +258,7 @@ GameObject:
   - component: {fileID: 95803423052652120}
   m_Layer: 0
   m_Name: NormalFrontArm
-  m_TagString: Untagged
+  m_TagString: Dead body
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -340,7 +340,7 @@ GameObject:
   - component: {fileID: 2419192733379475936}
   m_Layer: 0
   m_Name: NormalBody
-  m_TagString: Untagged
+  m_TagString: Dead body
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -423,9 +423,9 @@ GameObject:
   - component: {fileID: 7531491662824493673}
   - component: {fileID: 7531491662824493675}
   - component: {fileID: 7531491662824493672}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: perso_back_arm
-  m_TagString: Untagged
+  m_TagString: Dead body
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -580,9 +580,9 @@ GameObject:
   - component: {fileID: 7531491663585395083}
   - component: {fileID: 7531491663585395085}
   - component: {fileID: 7531491663585395082}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: perso_front_leg
-  m_TagString: Untagged
+  m_TagString: Dead body
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -737,9 +737,9 @@ GameObject:
   - component: {fileID: 7531491663824972602}
   - component: {fileID: 7531491663824972604}
   - component: {fileID: 7531491663824972605}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: perso_back_leg
-  m_TagString: Untagged
+  m_TagString: Dead body
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -894,9 +894,9 @@ GameObject:
   - component: {fileID: 7531491663873639203}
   - component: {fileID: 7531491663873639205}
   - component: {fileID: 7531491663873639202}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: perso_front_arm
-  m_TagString: Untagged
+  m_TagString: Dead body
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1050,9 +1050,9 @@ GameObject:
   - component: {fileID: 7531491664170274903}
   - component: {fileID: 7531491664170274889}
   - component: {fileID: 7531491664170274888}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: perso_body
-  m_TagString: Untagged
+  m_TagString: Dead body
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1183,9 +1183,9 @@ GameObject:
   - component: {fileID: 7531491664534469429}
   - component: {fileID: 7531491664534469431}
   - component: {fileID: 7531491664534469428}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: perso_head
-  m_TagString: Untagged
+  m_TagString: Dead body
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1330,7 +1330,7 @@ GameObject:
   - component: {fileID: 5848165863340547354}
   m_Layer: 0
   m_Name: Corpse
-  m_TagString: Untagged
+  m_TagString: Dead body
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1372,9 +1372,13 @@ MonoBehaviour:
   startVelocity: {x: 0, y: 0}
   ignoreLayerMask:
     serializedVersion: 2
-    m_Bits: 2990
-  overlapRange: 0.8
+    m_Bits: 2952
+  overlapRange: 5
   timeBeforeFallStopMinMax: {x: 0.1, y: 0.2}
+  bloodParticles: {fileID: 3315613793663920810, guid: c711a49fded2618438f15007f454a4d9, type: 3}
+  bloodSplats:
+  - {fileID: 7946271164395906478, guid: 43aece316c46420499b661255a31a421, type: 3}
+  stayImmobile: 0
   playerEntity: {fileID: 0}
 --- !u!95 &5848165863340547354
 Animator:
@@ -1407,7 +1411,7 @@ GameObject:
   - component: {fileID: 4869215225535225987}
   m_Layer: 0
   m_Name: NormalBackLeg
-  m_TagString: Untagged
+  m_TagString: Dead body
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
