@@ -651,7 +651,7 @@ Camera:
     height: 1
   near clip plane: 0.3
   far clip plane: 1000
-  field of view: 60
+  field of view: 80.4
   orthographic: 0
   orthographic size: 5
   m_Depth: 0
@@ -716,62 +716,6 @@ Transform:
 --- !u!1 &789650090
 GameObject:
   m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 789650096}
-  - component: {fileID: 789650095}
-  - component: {fileID: 789650094}
-  - component: {fileID: 789650093}
-  - component: {fileID: 789650092}
-  - component: {fileID: 789650091}
-  m_Layer: 0
-  m_Name: Player
-  m_TagString: Player
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!114 &789650091
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 789650090}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 59bc6aca5d214614b950e3cefdf463de, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  lastCheckpointPos: {x: 0, y: 0, z: 0}
-  checkpointIntervalMax: 10
-  deadBodyPrefab: {fileID: 2963285288185818766, guid: 97b28b9114a62d444afeec2a07b4f177, type: 3}
---- !u!61 &789650092
-BoxCollider2D:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 789650090}
-  m_Enabled: 1
-  m_Density: 1
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_UsedByEffector: 0
-  m_UsedByComposite: 0
-  m_Offset: {x: -0.298904, y: -0.006951034}
-  m_SpriteTilingProperty:
-    border: {x: 0, y: 0, z: 0, w: 0}
-    pivot: {x: 0, y: 0}
-    oldSize: {x: 0, y: 0}
-    newSize: {x: 0, y: 0}
-    adaptiveTilingThreshold: 0
-    drawMode: 0
-    adaptiveTiling: 0
-  m_AutoTiling: 0
   serializedVersion: 2
   m_Size: {x: 1.3197578, y: 3.4885497}
   m_EdgeRadius: 0
