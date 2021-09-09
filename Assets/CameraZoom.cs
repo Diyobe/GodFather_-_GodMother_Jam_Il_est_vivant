@@ -5,21 +5,21 @@ using UnityEngine;
 public class CameraZoom : MonoBehaviour
 {
     [SerializeField] float maxOrthographicSize;
-    [SerializeField] float normalOrthographicSize;
+    float normalOrthographicSize;
     [SerializeField] float timeToZoomOut;
     [SerializeField] float timeToZoomIn;
-    [SerializeField] float timerToZoomIn =0;
+    [SerializeField] float timerToZoomIn = 0;
     public bool isRespawnAnimation;
     public bool isRespawnAnimationFinish;
     public Vector3 firstCameraPosition;
     [SerializeField] GameObject target;
     [SerializeField] int respawnStep = 0;
-    [SerializeField] Camera camera;
+    [SerializeField] Camera cam;
 
     // Start is called before the first frame update
     void Start()
     {
-        normalOrthographicSize = camera.orthographicSize;
+        normalOrthographicSize = cam.orthographicSize;
     }
 
     // Update is called once per frame
@@ -28,26 +28,34 @@ public class CameraZoom : MonoBehaviour
         Respawn();
     }
 
-    void Respawn() {
-        if (isRespawnAnimation) {
-            if (respawnStep == 0) {
-                camera.orthographicSize += (maxOrthographicSize - normalOrthographicSize) / timeToZoomOut * Time.deltaTime;
+    void Respawn()
+    {
+        if (isRespawnAnimation)
+        {
+            if (respawnStep == 0)
+            {
+                cam.orthographicSize += (maxOrthographicSize - normalOrthographicSize) / timeToZoomOut * Time.deltaTime;
                 Debug.Log(Time.unscaledTime);
-                if (camera.orthographicSize >= maxOrthographicSize) {
-                    firstCameraPosition = camera.transform.position;
+                if (cam.orthographicSize >= maxOrthographicSize)
+                {
+                    firstCameraPosition = cam.transform.position;
                     respawnStep++;
                 }
             }
-            if (respawnStep == 1) {
+            if (respawnStep == 1)
+            {
                 timerToZoomIn += 1 / timeToZoomIn * Time.deltaTime;
-                camera.orthographicSize = Mathf.Lerp(maxOrthographicSize, normalOrthographicSize, timerToZoomIn);
-                camera.transform.position = new Vector3(Mathf.Lerp(firstCameraPosition.x, target.transform.position.x, timerToZoomIn), Mathf.Lerp(firstCameraPosition.y, target.transform.position.y, timerToZoomIn), firstCameraPosition.z);
-                if (camera.orthographicSize <= normalOrthographicSize) {
+                cam.orthographicSize = Mathf.Lerp(maxOrthographicSize, normalOrthographicSize, timerToZoomIn);
+                cam.transform.position = new Vector3(Mathf.Lerp(firstCameraPosition.x, target.transform.position.x, timerToZoomIn), Mathf.Lerp(firstCameraPosition.y, target.transform.position.y, timerToZoomIn), firstCameraPosition.z);
+                if (cam.orthographicSize <= normalOrthographicSize)
+                {
                     respawnStep++;
                 }
             }
-            if (respawnStep == 2) {
-                if (isRespawnAnimationFinish) {
+            if (respawnStep == 2)
+            {
+                if (isRespawnAnimationFinish)
+                {
                     respawnStep = 0;
                     isRespawnAnimation = false;
                     isRespawnAnimationFinish = false;
@@ -55,4 +63,23 @@ public class CameraZoom : MonoBehaviour
             }
         }
     }
+
+    //IEnumerator StartRespawnAnimation()
+    //{
+    //    //Step 0
+    //    while (camera.orthographicSize < maxOrthographicSize)
+    //    {
+    //        camera.orthographicSize += (maxOrthographicSize - normalOrthographicSize) / timeToZoomOut * Time.deltaTime;
+    //        yield return null;
+    //    }
+    //    camera.orthographicSize = maxOrthographicSize;
+
+    //    // Step 1
+    //    float timer = 0;
+    //    while (timer < timerToZoomIn)
+    //    {
+    //        timer += Time.deltaTime;
+    //        yield return null;
+    //    }
+    //}
 }
