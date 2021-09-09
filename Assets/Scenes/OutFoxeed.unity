@@ -134,6 +134,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Player 1
       objectReference: {fileID: 0}
+    - target: {fileID: 7889605083918818895, guid: 1e549ca72c5e7cc46a9291645741376c, type: 3}
+      propertyPath: deadBodyPushForce
+      value: 2.5
+      objectReference: {fileID: 0}
     - target: {fileID: 7889605083918818900, guid: 1e549ca72c5e7cc46a9291645741376c, type: 3}
       propertyPath: m_RootOrder
       value: 0
