@@ -1013,6 +1013,7 @@ MonoBehaviour:
   - {fileID: 6331156618175157510}
   - {fileID: 5842537403388522946}
   respawnSound: {fileID: 2102738206391342839}
+  surprisedCrowdSound: {fileID: 5082909270072146977}
 --- !u!1 &5700037949720845632
 GameObject:
   m_ObjectHideFlags: 0
@@ -1437,7 +1438,7 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 8300000, guid: 73c33ef8230a3a9458c52a0877d9a005, type: 3}
   m_PlayOnAwake: 0
-  m_Volume: 1
+  m_Volume: 0.434
   m_Pitch: 1
   Loop: 0
   Mute: 0
