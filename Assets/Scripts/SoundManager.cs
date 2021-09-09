@@ -30,7 +30,7 @@ public class SoundManager : MonoBehaviour
     public void PlaySpikeDeathSound()
     {
         if(spikeDeath.Length > 0)
-        spikeDeath[Random.Range(0, spikeDeath.Length)].Play();
+        spikeDeath[Random.Range(0, 4)].Play();
     }
     public void PlayRespawnSound()
     {

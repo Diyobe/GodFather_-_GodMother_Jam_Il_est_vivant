@@ -1344,7 +1344,7 @@ Transform:
   m_GameObject: {fileID: 7531491664744766662}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 0.28019887, y: 0.28019887, z: 0.28019887}
+  m_LocalScale: {x: 0.4, y: 0.4, z: 1}
   m_Children:
   - {fileID: 7531491664170274902}
   - {fileID: 7531491664534469426}
@@ -1379,6 +1379,7 @@ MonoBehaviour:
   bloodSplats:
   - {fileID: 7946271164395906478, guid: 43aece316c46420499b661255a31a421, type: 3}
   stayImmobile: 0
+  canBePushed: 0
   playerEntity: {fileID: 0}
 --- !u!95 &5848165863340547354
 Animator:

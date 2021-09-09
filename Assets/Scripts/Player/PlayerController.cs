@@ -22,6 +22,9 @@ public class PlayerController : MonoBehaviour
         } else {
             playerEntity.tryToJump = false;
         }
+
+        if (Input.GetKeyDown(KeyCode.A))
+            Player.instance.Die(true);
     }
 
     public static bool JumpInput => Input.GetKey("space") || Input.GetKey("z");
