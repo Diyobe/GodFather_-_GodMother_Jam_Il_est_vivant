@@ -26,11 +26,6 @@ public class EnvironmentManager : MonoBehaviour
         DontDestroyOnLoad(gameObject);
     }
 
-    private void Update()
-    {
-        if (Input.GetKeyDown(KeyCode.Space))
-            PlayAllEnvironmentDeathAnim();
-    }
 
     public void PlayAllEnvironmentDeathAnim()
     {
