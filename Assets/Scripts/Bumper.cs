@@ -4,12 +4,13 @@ using UnityEngine;
 
 public class Bumper : MonoBehaviour
 {
-    [Range(1, 50)]
-    [SerializeField] float height;
+    [Range(5f,50f)]
+    [SerializeField] float power = 10f;
     [SerializeField] float triggerDuration = 1f;
     bool trigerred;
 
     Animator animator;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -26,8 +27,7 @@ public class Bumper : MonoBehaviour
 
     private void Bump(Rigidbody2D rb)
     {
-        float jumpHeight = transform.position.y + height - transform.position.y;
-        rb.velocity = new Vector2(rb.velocity.x, Mathf.Sqrt(2 * jumpHeight * -Physics2D.gravity.y * rb.gravityScale));
+        rb.velocity = Mathf.Sqrt(2 * power * -Physics2D.gravity.y * rb.gravityScale) * (Vector2)transform.up;
         StartCoroutine(UpdateTriggerBool());
     }
 
@@ -42,7 +42,13 @@ public class Bumper : MonoBehaviour
 
     private void OnDrawGizmosSelected()
     {
+        Vector2 playerHalfHeight = 0.9f * Vector2.up;
         Gizmos.color = Color.blue;
-        Gizmos.DrawWireCube(transform.position + Vector3.up * height, Vector3.one);
+        for (float t = 0; t < 10; t+=0.25f)
+        {
+
+            Vector2 point = (Vector2)transform.position + (Vector2)transform.up * power * t + 0.5f * Physics2D.gravity * (t * t) + playerHalfHeight;
+            Gizmos.DrawWireCube(point, Vector3.one);
+        }
     }
 }

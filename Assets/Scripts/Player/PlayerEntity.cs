@@ -46,7 +46,7 @@ public class PlayerEntity : MonoBehaviour {
     private void Move() {
         Vector2 currentSpeed = rb.velocity;
         if (isIntheAir == 0) {
-            //anim.SetBool("isJumpingDown", true);
+            anim.SetBool("isJumpingDown", true);
             if (direction.x == 0 && currentSpeed.x != 0) {
                 currentSpeed.x += -Mathf.Sign(currentSpeed.x) * Time.fixedDeltaTime * airFriction;
                 if (-slowSpeed < currentSpeed.x && currentSpeed.x < slowSpeed) {
