@@ -10,7 +10,7 @@ public class Player : MonoBehaviour
     Rigidbody2D rb;
     Vector2 lastVelocity;
 
-    [SerializeField] private Vector3 lastCheckpointPos;
+    [SerializeField] private Checkpoint lastCheckpointPos;
 
 
     [SerializeField] private GameObject[] bloodSplats;
@@ -28,14 +28,17 @@ public class Player : MonoBehaviour
     [Space(10), SerializeField, InspectorName("Player mask")] LayerMask playerMaskSezrializationHelper;
     public static LayerMask playerMask;
 
+    CameraZoom camZoom;
+
     // Start is called before the first frame update
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
         playerEntity = GetComponent<PlayerEntity>();
-        lastCheckpointPos = transform.position;
 
         playerMask = playerMaskSezrializationHelper;
+
+        camZoom = Camera.main.GetComponent<CameraZoom>();
     }
 
     private void Update()
@@ -93,31 +96,34 @@ public class Player : MonoBehaviour
         }
     }
 
-    private void SetCheckpoint(Transform checkpoint)
+    private void SetCheckpoint(Transform checkpointTransform)
     {
         //Debug.Log("Passed checkpoint");
-        if (checkpoint.position != lastCheckpointPos)
+        Checkpoint checkpoint;
+        if (checkpointTransform.TryGetComponent<Checkpoint>(out checkpoint))
         {
-            lastCheckpointPos = checkpoint.position;
+            if (checkpoint != lastCheckpointPos)
+            {
+                lastCheckpointPos = checkpoint;
+            }
         }
-    }
-    private void SetCheckpoint(Vector3 newCheckpointPos)
-    {
-        //Debug.Log("Force new checkpoint because of distance");
-        lastCheckpointPos = newCheckpointPos;
+        else Debug.LogError("Checkpoint component not found");
     }
 
     public void Die(bool immobileDeadBody, bool deadBodyCanBePushed = false)
     {
+        if(SoundManager.Instance != null)
         SoundManager.Instance.PlaySpikeDeathSound();
 
         //Debug.Log("Die");
         if (bloodSplats.Length > 0) Instantiate(bloodSplats[Random.Range(0, bloodSplats.Length)], transform.position, Quaternion.identity);
         if (bloodParticle) Instantiate(bloodParticle, transform.position, Quaternion.identity);
 
-        // Tp to last checkpoint
-        rb.velocity = Vector3.zero;
-        rb.position = lastCheckpointPos;
+        // Use last checkpoint
+        if (lastCheckpointPos != null)
+        lastCheckpointPos.UseCheckpoint(rb);
+
+        camZoom.isRespawnAnimation = true;
 
         SpawnDeadBody(immobileDeadBody, deadBodyCanBePushed);
     }
