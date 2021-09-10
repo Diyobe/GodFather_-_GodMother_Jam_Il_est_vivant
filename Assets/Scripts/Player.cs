@@ -122,8 +122,8 @@ public class Player : MonoBehaviour
         }
 
         //Debug.Log("Die");
-        if (bloodSplats.Length > 0) Destroy(Instantiate(bloodSplats[Random.Range(0, bloodSplats.Length)], transform.position, Quaternion.identity), 15f);
-        if (bloodParticle) Destroy(Instantiate(bloodParticle, transform.position, Quaternion.identity), 15f);
+        if (bloodSplats.Length > 0) nstantiate(bloodSplats[Random.Range(0, bloodSplats.Length)], transform.position, Quaternion.identity);
+        if (bloodParticle) Instantiate(bloodParticle, transform.position, Quaternion.identity);
 
         camZoom.StartRespawn(lastCheckpointPos.respawnPoint.gameObject);
 
