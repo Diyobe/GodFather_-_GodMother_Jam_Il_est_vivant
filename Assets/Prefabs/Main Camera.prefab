@@ -110,6 +110,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 645fa6115675be64b8003f10672a72e2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxOrthographicSize: 30
-  timeToZoomOut: 1
-  timeToZoomIn: 1
+  maxOrthographicSize: 20
+  timeToZoomOut: 1.25
+  timeToZoomIn: 0.75

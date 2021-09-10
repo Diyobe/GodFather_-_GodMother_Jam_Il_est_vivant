@@ -8,6 +8,7 @@ public class Player : MonoBehaviour
     private void Awake() => instance = this;
 
     Rigidbody2D rb;
+    public Rigidbody2D Rb => rb;
     Vector2 lastVelocity;
 
     [SerializeField] private Checkpoint lastCheckpointPos;
@@ -15,6 +16,10 @@ public class Player : MonoBehaviour
 
     [SerializeField] private GameObject[] bloodSplats;
     [SerializeField] private GameObject bloodParticle;
+
+    bool dead;
+    public void Revive() => dead = false;
+    int deadCounter;
 
     //[Tooltip("If the distance between player and last checkpoint bigger than this value --> set new checkpoint on current player position")]
     //public float checkpointIntervalMax = 10f;
@@ -39,6 +44,8 @@ public class Player : MonoBehaviour
         playerMask = playerMaskSezrializationHelper;
 
         camZoom = Camera.main.GetComponent<CameraZoom>();
+
+        deadCounter = 0;
     }
 
     private void Update()
@@ -112,17 +119,24 @@ public class Player : MonoBehaviour
 
     public void Die(bool immobileDeadBody, bool deadBodyCanBePushed = false)
     {
-        if(SoundManager.Instance != null)
-        SoundManager.Instance.PlaySpikeDeathSound();
+        if (dead) return;
+        dead = true;
+        deadCounter++;
 
-        if(SoundManager.Instance != null)
+        if (SoundManager.Instance != null)
         {
+            if (deadBodyCanBePushed)
+                SoundManager.Instance.PlaySpikeDeathSound();
+            else
+                SoundManager.Instance.PlayCrushedDeathSound();
+
+
             SoundManager.Instance.PlaySurprisedCrowdSound();
         }
 
         //Debug.Log("Die");
-        if (bloodSplats.Length > 0) Destroy(Instantiate(bloodSplats[Random.Range(0, bloodSplats.Length)], transform.position, Quaternion.identity), 15f);
-        if (bloodParticle) Destroy(Instantiate(bloodParticle, transform.position, Quaternion.identity), 15f);
+        if (bloodSplats.Length > 0) Instantiate(bloodSplats[Random.Range(0, bloodSplats.Length)], transform.position, Quaternion.identity);
+        if (bloodParticle) Instantiate(bloodParticle, transform.position, Quaternion.identity);
 
         camZoom.StartRespawn(lastCheckpointPos.respawnPoint.gameObject);
 
@@ -130,7 +144,7 @@ public class Player : MonoBehaviour
 
         // Use last checkpoint
         if (lastCheckpointPos != null)
-        lastCheckpointPos.UseCheckpoint(rb);
+            lastCheckpointPos.UseCheckpoint(rb);
     }
     private void SpawnDeadBody(bool immobile, bool canBePushed)
     {

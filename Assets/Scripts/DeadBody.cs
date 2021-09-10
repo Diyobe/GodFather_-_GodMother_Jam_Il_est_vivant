@@ -24,21 +24,21 @@ public class DeadBody : MonoBehaviour
 
     private void Start()
     {
-        if(stayImmobile) StartCoroutine(DisableFallAfterTime());
+        if (stayImmobile) StartCoroutine(DisableFallAfterTime());
         Debug.Log($"immboile = {stayImmobile}");
 
         Collider2D[] collidersFound = Physics2D.OverlapCircleAll(rb.position, overlapRange, ~ignoreLayerMask);
-        if(collidersFound.Length > 0)
+        if (collidersFound.Length > 0)
         {
             float shortestDistance = Vector3.Distance(collidersFound[0].ClosestPoint(rb.position), rb.position);
             int closestObjectIndex = 0;
-            for(int i = 1; i < collidersFound.Length; i++)
+            for (int i = 1; i < collidersFound.Length; i++)
             {
                 Collider2D collider = collidersFound[i];
                 if (collider.isTrigger) continue;
 
                 float distance = Vector3.Distance(collider.ClosestPoint(rb.position), rb.position);
-                if(distance < shortestDistance)
+                if (distance < shortestDistance)
                 {
                     shortestDistance = distance;
                     closestObjectIndex = i;
@@ -72,7 +72,7 @@ public class DeadBody : MonoBehaviour
         rb.gravityScale = 0;
 
         float timer = 0;
-        while(timer < timeBeforeFallStop)
+        while (timer < timeBeforeFallStop)
         {
             rb.velocity = Vector2.Lerp(startVelocity, Vector2.zero, Mathf.SmoothStep(0, timeBeforeFallStop, timer));
             timer += Time.deltaTime;
@@ -91,6 +91,7 @@ public class DeadBody : MonoBehaviour
     {
         float duration = 0.5f;
         float timer = 0;
+        SoundManager.Instance.PlayStompCorpseSound();
 
         Vector2 startPos = transform.position;
         Vector2 aimedPos = (Vector2)transform.position + force * duration;
@@ -110,7 +111,7 @@ public class DeadBody : MonoBehaviour
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        if(collision.gameObject.tag == "Player")
+        if (collision.gameObject.tag == "Player")
         {
             Debug.Log("Collide with player");
             transform.position = new Vector2(transform.position.x, transform.position.y - 1);

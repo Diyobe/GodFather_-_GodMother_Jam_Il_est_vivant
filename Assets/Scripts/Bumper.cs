@@ -21,7 +21,7 @@ public class Bumper : MonoBehaviour
     {
         if (collision.CompareTag("Player"))
         {
-            if(!trigerred) Bump(collision.transform.GetComponent<Rigidbody2D>());
+            if(!trigerred) Bump(Player.instance.Rb);
         }
     }
 

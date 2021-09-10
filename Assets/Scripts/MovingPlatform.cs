@@ -37,7 +37,7 @@ public class MovingPlatform : MonoBehaviour
         if (collider.transform.CompareTag("Player"))
         {
             playerRb.gravityScale = startGravityScale;
-            playerRb.transform.SetParent(null);
+            if(playerRb.gameObject.activeSelf) playerRb.transform.SetParent(null);
         }
     }
     private void OnCollisionStay2D(Collision2D collision)
