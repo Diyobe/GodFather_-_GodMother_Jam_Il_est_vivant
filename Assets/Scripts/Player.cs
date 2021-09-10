@@ -113,11 +113,14 @@ public class Player : MonoBehaviour
 
     public void Die(bool immobileDeadBody, bool deadBodyCanBePushed = false)
     {
-        if(SoundManager.Instance != null)
-        SoundManager.Instance.PlaySpikeDeathSound();
-
-        if(SoundManager.Instance != null)
+        if (SoundManager.Instance != null)
         {
+            if (deadBodyCanBePushed)
+                SoundManager.Instance.PlaySpikeDeathSound();
+            else
+                SoundManager.Instance.PlayCrushedDeathSound();
+
+
             SoundManager.Instance.PlaySurprisedCrowdSound();
         }
 
@@ -131,7 +134,7 @@ public class Player : MonoBehaviour
 
         // Use last checkpoint
         if (lastCheckpointPos != null)
-        lastCheckpointPos.UseCheckpoint(rb);
+            lastCheckpointPos.UseCheckpoint(rb);
     }
     private void SpawnDeadBody(bool immobile, bool canBePushed)
     {
