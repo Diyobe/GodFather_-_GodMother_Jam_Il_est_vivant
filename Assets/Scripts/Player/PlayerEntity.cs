@@ -17,8 +17,6 @@ public class PlayerEntity : MonoBehaviour {
     [HideInInspector] public bool tryToJump;
     bool rememberJump;
     bool mustJump = false;
-    [SerializeField] float gravityJumpMultiplier = 1.5f;
-    [SerializeField] float gravityFallMultiplier = 1f;
     [SerializeField] float tryToJumpValue = 0.2f;
     float tryToJumpTimer = -100f;
     [SerializeField] float maxJumpValue = 1f;
