@@ -20,6 +20,12 @@ public class Player : MonoBehaviour
     bool dead;
     public void Revive() => dead = false;
     int deadCounter;
+    public void IncrementDeadCounter()
+    {
+        deadCounter++;
+        if(deadCounterDisplayer) deadCounterDisplayer.text = $"{deadCounter} deaths";
+    }
+    [Space(10), SerializeField] TextMesh deadCounterDisplayer;
 
     //[Tooltip("If the distance between player and last checkpoint bigger than this value --> set new checkpoint on current player position")]
     //public float checkpointIntervalMax = 10f;
@@ -121,7 +127,7 @@ public class Player : MonoBehaviour
     {
         if (dead) return;
         dead = true;
-        deadCounter++;
+        IncrementDeadCounter();
 
         if (SoundManager.Instance != null)
         {
