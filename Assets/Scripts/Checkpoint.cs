@@ -30,8 +30,6 @@ public class Checkpoint : MonoBehaviour
         player.transform.position = respawnPoint.position;
         player.transform.rotation = Quaternion.identity;
 
-        Player.instance.Revive();
-
         player.SetActive(true);
     }
 }

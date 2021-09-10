@@ -69,7 +69,7 @@ public class Rabbit : MonoBehaviour {
         Instantiate(bloodParticle, transform.position, Quaternion.identity);
         GameObject corpse = Instantiate(deadBody);
         corpse.transform.position = transform.position;
-        corpse.transform.position = new Vector3(corpse.transform.position.x, corpse.transform.position.y - transform.localScale.y*1.5f, corpse.transform.position.z);
+        corpse.transform.position = new Vector3(corpse.transform.position.x, corpse.transform.position.y - 1.5f, corpse.transform.position.z);
         Destroy(gameObject);
     }
 
