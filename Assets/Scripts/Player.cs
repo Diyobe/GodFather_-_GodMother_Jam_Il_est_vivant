@@ -17,6 +17,10 @@ public class Player : MonoBehaviour
     [SerializeField] private GameObject[] bloodSplats;
     [SerializeField] private GameObject bloodParticle;
 
+    bool dead;
+    public void Revive() => dead = false;
+    int deadCounter;
+
     //[Tooltip("If the distance between player and last checkpoint bigger than this value --> set new checkpoint on current player position")]
     //public float checkpointIntervalMax = 10f;
 
@@ -40,6 +44,8 @@ public class Player : MonoBehaviour
         playerMask = playerMaskSezrializationHelper;
 
         camZoom = Camera.main.GetComponent<CameraZoom>();
+
+        deadCounter = 0;
     }
 
     private void Update()
@@ -113,6 +119,10 @@ public class Player : MonoBehaviour
 
     public void Die(bool immobileDeadBody, bool deadBodyCanBePushed = false)
     {
+        if (dead) return;
+        dead = true;
+        deadCounter++;
+
         if (SoundManager.Instance != null)
         {
             if (deadBodyCanBePushed)
