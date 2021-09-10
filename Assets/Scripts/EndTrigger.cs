@@ -40,7 +40,8 @@ public class EndTrigger : MonoBehaviour
 
         cam.GetComponent<CameraZoom>().ZoomOut();
 
-        yield return new WaitForSeconds(0.75f);
+        yield return new WaitForSeconds(2f);
 
+        Player.instance.IncrementDeadCounter();
     }
 }
