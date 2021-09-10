@@ -62,6 +62,7 @@ public class SoundManager : MonoBehaviour
     {
         if (stompCorpseSound)
         {
+            //Debug.LogError("Stomp Corpse");
             stompCorpseSound.pitch = Random.Range(0.8f, 1.2f);
             stompCorpseSound.Play();
         }
