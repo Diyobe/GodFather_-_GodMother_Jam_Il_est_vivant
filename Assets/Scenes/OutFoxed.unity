@@ -55670,6 +55670,18 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 7889605082717558735, guid: 1e549ca72c5e7cc46a9291645741376c, type: 3}
+      propertyPath: m_FlipX
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7889605083421607194, guid: 1e549ca72c5e7cc46a9291645741376c, type: 3}
+      propertyPath: m_FlipX
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7889605083557067650, guid: 1e549ca72c5e7cc46a9291645741376c, type: 3}
+      propertyPath: m_FlipX
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 7889605083918818889, guid: 1e549ca72c5e7cc46a9291645741376c, type: 3}
       propertyPath: m_GravityScale
       value: 0.9
@@ -55710,6 +55722,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Player 1
       objectReference: {fileID: 0}
+    - target: {fileID: 7889605083918818894, guid: 1e549ca72c5e7cc46a9291645741376c, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 7889605083918818895, guid: 1e549ca72c5e7cc46a9291645741376c, type: 3}
       propertyPath: bloodParticle
       value: 
@@ -55740,11 +55756,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7889605083918818900, guid: 1e549ca72c5e7cc46a9291645741376c, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 38.7
+      value: 88.41
       objectReference: {fileID: 0}
     - target: {fileID: 7889605083918818900, guid: 1e549ca72c5e7cc46a9291645741376c, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -5.8
+      value: -4.07
       objectReference: {fileID: 0}
     - target: {fileID: 7889605083918818900, guid: 1e549ca72c5e7cc46a9291645741376c, type: 3}
       propertyPath: m_LocalPosition.z
@@ -55756,15 +55772,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7889605083918818900, guid: 1e549ca72c5e7cc46a9291645741376c, type: 3}
       propertyPath: m_LocalRotation.x
-      value: -0
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7889605083918818900, guid: 1e549ca72c5e7cc46a9291645741376c, type: 3}
       propertyPath: m_LocalRotation.y
-      value: -0
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7889605083918818900, guid: 1e549ca72c5e7cc46a9291645741376c, type: 3}
       propertyPath: m_LocalRotation.z
-      value: -0
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7889605083918818900, guid: 1e549ca72c5e7cc46a9291645741376c, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
@@ -55776,6 +55792,14 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7889605083918818900, guid: 1e549ca72c5e7cc46a9291645741376c, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7889605084066534786, guid: 1e549ca72c5e7cc46a9291645741376c, type: 3}
+      propertyPath: m_FlipX
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7889605084313647622, guid: 1e549ca72c5e7cc46a9291645741376c, type: 3}
+      propertyPath: m_FlipX
       value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []

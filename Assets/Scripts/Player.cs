@@ -8,6 +8,7 @@ public class Player : MonoBehaviour
     private void Awake() => instance = this;
 
     Rigidbody2D rb;
+    public Rigidbody2D Rb => rb;
     Vector2 lastVelocity;
 
     [SerializeField] private Checkpoint lastCheckpointPos;
