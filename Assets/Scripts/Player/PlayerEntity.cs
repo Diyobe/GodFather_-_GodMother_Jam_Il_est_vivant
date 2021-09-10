@@ -2,10 +2,10 @@ using UnityEngine;
 
 public class PlayerEntity : MonoBehaviour {
     public float maxSpeed;
-    [SerializeField] float maxSpeedInAir = 0;
-    [SerializeField] float timeBeforeMaxSpeed = 0; // duration before reach max speed
-    [SerializeField] float jumpSpeed = 0;
-    [SerializeField] float ratioComeBack = 0; // make the player go to the other direction more fastly (only when grounded)
+    [SerializeField] float maxSpeedInAir;
+    [SerializeField] float timeBeforeMaxSpeed; // duration before reach max speed
+    [SerializeField] float jumpSpeed;
+    [SerializeField] float ratioComeBack; // make the player go to the other direction more fastly (only when grounded)
 
     /* [HideInInspector]*/
     public int isGrounded;
@@ -16,17 +16,18 @@ public class PlayerEntity : MonoBehaviour {
 
     [HideInInspector] public bool tryToJump;
     bool rememberJump;
+    bool canJump;
     bool mustJump = false;
-    [SerializeField] float gravityJumpMultiplier = 1.5f;
-    [SerializeField] float gravityFallMultiplier = 1f;
     [SerializeField] float tryToJumpValue = 0.2f;
     float tryToJumpTimer = -100f;
     [SerializeField] float maxJumpValue = 1f;
     [SerializeField] float minJumpValue = 0.1f;
-    [HideInInspector] public float jumpTimer = -100f;
-    [HideInInspector] public Vector2 jumpForce = Vector2.zero;
+    float jumpTimer = -100f;
+    [SerializeField] float frameBeforeJumpMaxSpeed = 20;
+    [SerializeField] float frameBeforeStopJump = 20;
+    Vector2 jumpForce = Vector2.zero;
 
-    public Rigidbody2D rb;
+    private Rigidbody2D rb;
     public Animator anim;
     [SerializeField] GameObject playerSprites;
 
@@ -39,14 +40,13 @@ public class PlayerEntity : MonoBehaviour {
     void FixedUpdate() {
         Move();
         JumpManagement();
-        Debug.Log(rb.velocity);
     }
+
 
     private void Move() {
         Vector2 currentSpeed = rb.velocity;
         if (isIntheAir == 0) {
-            anim.SetTrigger("isFalling");
-            anim.SetBool("walk", false);
+            anim.SetBool("isJumpingDown", true);
             if (direction.x == 0 && currentSpeed.x != 0) {
                 currentSpeed.x += -Mathf.Sign(currentSpeed.x) * Time.fixedDeltaTime * airFriction;
                 if (-slowSpeed < currentSpeed.x && currentSpeed.x < slowSpeed) {
@@ -56,9 +56,10 @@ public class PlayerEntity : MonoBehaviour {
                 currentSpeed.x += direction.x * Time.fixedDeltaTime * maxSpeedInAir / timeBeforeMaxSpeed;
                 currentSpeed.x = Mathf.Clamp(currentSpeed.x, -maxSpeedInAir, maxSpeedInAir);
                 if (direction.x != 0) {
-                    playerSprites.transform.localScale = new Vector3(Mathf.Sign(direction.x) * Mathf.Abs(playerSprites.transform.localScale.z), playerSprites.transform.localScale.y, playerSprites.transform.localScale.z);
+                        playerSprites.transform.localScale = new Vector3(Mathf.Sign(direction.x) * Mathf.Abs(playerSprites.transform.localScale.z), playerSprites.transform.localScale.y, playerSprites.transform.localScale.z);
                 }
             }
+            anim.SetBool("walk", false);
         } else {
             if (direction.x == 0 && currentSpeed.x != 0) {
                 currentSpeed.x += -Mathf.Sign(currentSpeed.x) * Time.fixedDeltaTime * friction;
@@ -73,28 +74,32 @@ public class PlayerEntity : MonoBehaviour {
                 if (direction.x != 0) {
                     playerSprites.transform.localScale = new Vector3(Mathf.Sign(direction.x) * Mathf.Abs(playerSprites.transform.localScale.z), playerSprites.transform.localScale.y, playerSprites.transform.localScale.z);
                     anim.SetBool("walk", true);
-                }
+                }     
             }
         }
         rb.velocity = currentSpeed;
     }
     public void JumpManagement() {
         RememberJump();
-        if (tryToJump || mustJump || rememberJump) {
+        if (tryToJump || mustJump) {
             if (IsJumpPossible()) {
                 Jump(true);
             } else {
                 rememberJump = true;
-                mustJump = false;
+                canJump = false;
                 Jump(false);
             }
         } else {
-            rememberJump = false;
             mustJump = false;
+            jumpTimer = -100f;
+            canJump = false;
             Jump(false);
         }
         if (isGrounded > 0) {
-            anim.SetTrigger("stopJump");
+            anim.SetBool("isJumpingDown", false);
+            anim.SetBool("isJumpingUp", false);
+            rb.velocity -= jumpForce;
+            jumpForce.y = 0;
         }
     }
     private void RememberJump() { // Input Buffer
@@ -105,33 +110,35 @@ public class PlayerEntity : MonoBehaviour {
             tryToJumpTimer -= Time.fixedDeltaTime;
             if (tryToJumpTimer <= 0) {
                 tryToJumpTimer = -100f;
+                tryToJump = false;
                 rememberJump = false;
             } else {
-                rememberJump = true;
+                tryToJump = true;
             }
         }
     }
     public bool IsJumpPossible() {
         if (isGrounded > 0) {
-            jumpTimer = -100f;
-            mustJump = true;
-            anim.SetTrigger("stopJump");
-            anim.SetTrigger("isJumpingUp");
+            canJump = true;
+            anim.SetBool("isJumpingUp", true);
         }
-        if (mustJump) {
+        if (mustJump || canJump) {
             if (jumpTimer == -100f) {
                 jumpTimer = maxJumpValue;
             } else {
                 jumpTimer -= Time.fixedDeltaTime;
             }
             if (jumpTimer <= 0) {
+                anim.SetBool("isJumpingUp", false);
+                anim.SetBool("isJumpingDown", true);
                 mustJump = false;
+                canJump = false;
                 jumpTimer = -100f;
                 return false;
             }
-            if ((maxJumpValue - minJumpValue) >= jumpTimer) {
+            if (maxJumpValue - minJumpValue < jumpTimer) {
                 mustJump = true;
-            } else if (tryToJump == false) {
+            } else {
                 mustJump = false;
             }
             return true;
@@ -140,13 +147,23 @@ public class PlayerEntity : MonoBehaviour {
     }
 
     private void Jump(bool add) {
+        rb.velocity -= jumpForce;
         if (add) {
             isGrounded = isGrounded - 1 < 0 ? 0 : isGrounded - 1;
-            jumpForce = new Vector2(rb.velocity.x, jumpSpeed);
+            jumpForce += new Vector2(0, jumpSpeed / frameBeforeJumpMaxSpeed);
+            if (jumpForce.y > jumpSpeed) {
+                jumpForce.y = jumpSpeed;
+            }
+            rb.velocity += jumpForce;
+            rememberJump = false;
+            tryToJumpTimer = -100f;
         } else {
-            jumpForce = new Vector2(rb.velocity.x, rb.velocity.y);     
+            jumpForce -= new Vector2(0, jumpSpeed / frameBeforeStopJump);
+            if (jumpForce.y < 0) {
+                jumpForce.y = 0;
+            }
+            rb.velocity += jumpForce;
         }
-        rb.velocity = jumpForce;
     }
     private void OnCollisionEnter2D(Collision2D collision) {
         isIntheAir++;

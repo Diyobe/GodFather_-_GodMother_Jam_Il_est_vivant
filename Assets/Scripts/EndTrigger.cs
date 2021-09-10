@@ -38,9 +38,8 @@ public class EndTrigger : MonoBehaviour
         animator.enabled = true;
         animator.SetTrigger("start_grinder");
 
+        yield return new WaitForSeconds(1.5f);
+
         cam.GetComponent<CameraZoom>().ZoomOut();
-
-        yield return new WaitForSeconds(0.75f);
-
     }
 }
