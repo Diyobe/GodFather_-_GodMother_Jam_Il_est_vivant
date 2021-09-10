@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 3885480103597975723}
   - component: {fileID: 3282384487480846984}
-  m_Layer: 0
+  m_Layer: 13
   m_Name: Visual
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -93,7 +93,7 @@ GameObject:
   - component: {fileID: 8192035664347884578}
   - component: {fileID: 8192035664347884576}
   - component: {fileID: 8192035664347884577}
-  m_Layer: 0
+  m_Layer: 13
   m_Name: Muzzle
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -166,7 +166,7 @@ GameObject:
   - component: {fileID: 8192035665430726939}
   - component: {fileID: 8192035665430726919}
   - component: {fileID: 1835553105}
-  m_Layer: 0
+  m_Layer: 13
   m_Name: Rabbit
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -294,7 +294,7 @@ GameObject:
   - component: {fileID: 8192035665629704244}
   - component: {fileID: 8192035665629704242}
   - component: {fileID: 8192035665629704243}
-  m_Layer: 0
+  m_Layer: 13
   m_Name: Foot2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -365,7 +365,7 @@ GameObject:
   - component: {fileID: 8192035665970304658}
   - component: {fileID: 8192035665970304671}
   - component: {fileID: 8192035665970304656}
-  m_Layer: 0
+  m_Layer: 13
   m_Name: Foot1
   m_TagString: Untagged
   m_Icon: {fileID: 0}

@@ -8,18 +8,21 @@ public class CameraZoom : MonoBehaviour
     float normalOrthographicSize;
     [SerializeField] float timeToZoomOut;
     [SerializeField] float timeToZoomIn;
-    [SerializeField] float timerToZoomIn = 0;
-    public bool isRespawnAnimation;
-    public bool isRespawnAnimationFinish;
-    public Vector3 firstCameraPosition;
-    [SerializeField] GameObject target;
-    [SerializeField] int respawnStep = 0;
-    [SerializeField] Camera cam;
+    float timerToZoomIn = 0;
+    bool isRespawnAnimation;
+    bool isRespawnAnimationFinish;
+    Vector3 firstCameraPosition;
+    GameObject target;
+    int respawnStep = 0;
+    Camera cam;
 
     // Start is called before the first frame update
     void Start()
     {
+        if (cam == null) cam = GetComponent<Camera>();
         normalOrthographicSize = cam.orthographicSize;
+
+        target = Player.instance.gameObject;
     }
 
     // Update is called once per frame
@@ -54,16 +57,35 @@ public class CameraZoom : MonoBehaviour
             }
             if (respawnStep == 2)
             {
-                if (isRespawnAnimationFinish)
-                {
-                    respawnStep = 0;
-                    isRespawnAnimation = false;
-                    isRespawnAnimationFinish = false;
-                }
+                respawnStep = 0;
+                timerToZoomIn = 0;
+                isRespawnAnimation = false;
+                isRespawnAnimationFinish = false;
             }
         }
     }
 
+    public void StartRespawn(GameObject newTarget)
+    {
+        GameObject oldTarget = target;
+        target = newTarget;
+
+        isRespawnAnimation = true;
+    }
+
+    public void ZoomOut()
+    {
+        StartCoroutine(ZoomOutCurrentCoroutine());
+    }
+    IEnumerator ZoomOutCurrentCoroutine()
+    {
+        while (cam.orthographicSize < maxOrthographicSize)
+        {
+            cam.orthographicSize += (maxOrthographicSize - normalOrthographicSize) / timeToZoomOut * Time.deltaTime;
+            yield return null;
+        }
+        cam.orthographicSize = maxOrthographicSize;
+    }
     //IEnumerator StartRespawnAnimation()
     //{
     //    //Step 0

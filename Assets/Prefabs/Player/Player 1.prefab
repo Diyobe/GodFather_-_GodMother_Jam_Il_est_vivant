@@ -11,9 +11,9 @@ GameObject:
   - component: {fileID: 7889605082489997537}
   - component: {fileID: 7889605082489997539}
   - component: {fileID: 7889605082489997538}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Foot
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -82,7 +82,7 @@ GameObject:
   - component: {fileID: 7889605082673779702}
   - component: {fileID: 7889605082673779701}
   - component: {fileID: 7889605082673779700}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: perso_body
   m_TagString: Player
   m_Icon: {fileID: 0}
@@ -210,7 +210,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 0
+  m_SortingOrder: 1
   m_Sprite: {fileID: 21300000, guid: 2e3e62e3e9956e449a97514cf5349ef2, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -232,9 +232,9 @@ GameObject:
   m_Component:
   - component: {fileID: 7889605082816806709}
   - component: {fileID: 7889605082816806710}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: perso_back_leg
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -314,9 +314,9 @@ GameObject:
   m_Component:
   - component: {fileID: 7889605083421607193}
   - component: {fileID: 7889605083421607194}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: perso_torso
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -377,7 +377,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 1
+  m_SortingOrder: 2
   m_Sprite: {fileID: 21300000, guid: 21c0cf7fa6465d64eb7852092eb9b2b8, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -459,7 +459,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 2
+  m_SortingOrder: 4
   m_Sprite: {fileID: 21300000, guid: 0d9fbe29ab263794cb4fee94696235ee, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -632,9 +632,9 @@ GameObject:
   m_Component:
   - component: {fileID: 7889605084066534785}
   - component: {fileID: 7889605084066534786}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: perso_front_leg
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -692,7 +692,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 2
+  m_SortingOrder: 1
   m_Sprite: {fileID: 21300000, guid: 99f99b578cee0df488136ec254486154, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -774,7 +774,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 3
+  m_SortingOrder: 4
   m_Sprite: {fileID: 21300000, guid: 27488bd05661d8d46aae72bcb65f7fd3, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0

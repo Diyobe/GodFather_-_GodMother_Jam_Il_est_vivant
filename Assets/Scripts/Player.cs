@@ -8,6 +8,7 @@ public class Player : MonoBehaviour
     private void Awake() => instance = this;
 
     Rigidbody2D rb;
+    public Rigidbody2D Rb => rb;
     Vector2 lastVelocity;
 
     [SerializeField] private Checkpoint lastCheckpointPos;
@@ -115,17 +116,22 @@ public class Player : MonoBehaviour
         if(SoundManager.Instance != null)
         SoundManager.Instance.PlaySpikeDeathSound();
 
+        if(SoundManager.Instance != null)
+        {
+            SoundManager.Instance.PlaySurprisedCrowdSound();
+        }
+
         //Debug.Log("Die");
         if (bloodSplats.Length > 0) Instantiate(bloodSplats[Random.Range(0, bloodSplats.Length)], transform.position, Quaternion.identity);
         if (bloodParticle) Instantiate(bloodParticle, transform.position, Quaternion.identity);
 
+        camZoom.StartRespawn(lastCheckpointPos.respawnPoint.gameObject);
+
+        SpawnDeadBody(immobileDeadBody, deadBodyCanBePushed);
+
         // Use last checkpoint
         if (lastCheckpointPos != null)
         lastCheckpointPos.UseCheckpoint(rb);
-
-        camZoom.isRespawnAnimation = true;
-
-        SpawnDeadBody(immobileDeadBody, deadBodyCanBePushed);
     }
     private void SpawnDeadBody(bool immobile, bool canBePushed)
     {
