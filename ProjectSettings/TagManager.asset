@@ -10,6 +10,7 @@ TagManager:
   - Dead body
   - Spikes
   - Boulder
+  - The End
   layers:
   - Default
   - TransparentFX
@@ -23,8 +24,8 @@ TagManager:
   - Ragdoll head
   - 
   - Ground
-  - 
-  - 
+  - The End
+  - Lapin
   - 
   - 
   - 

@@ -73,6 +73,19 @@ public class CameraZoom : MonoBehaviour
         isRespawnAnimation = true;
     }
 
+    public void ZoomOut()
+    {
+        StartCoroutine(ZoomOutCurrentCoroutine());
+    }
+    IEnumerator ZoomOutCurrentCoroutine()
+    {
+        while (cam.orthographicSize < maxOrthographicSize)
+        {
+            cam.orthographicSize += (maxOrthographicSize - normalOrthographicSize) / timeToZoomOut * Time.deltaTime;
+            yield return null;
+        }
+        cam.orthographicSize = maxOrthographicSize;
+    }
     //IEnumerator StartRespawnAnimation()
     //{
     //    //Step 0

@@ -5,6 +5,9 @@ using UnityEngine;
 public class CameraController : MonoBehaviour
 {
     Transform target;
+    public Transform SetTarget(Transform newTarget) => target = newTarget;
+    public Transform Target => target;
+
     [Range(1,10)]
     [SerializeField] float smoothSpeed = 5f;
 

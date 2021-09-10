@@ -115,6 +115,11 @@ public class Player : MonoBehaviour
         if(SoundManager.Instance != null)
         SoundManager.Instance.PlaySpikeDeathSound();
 
+        if(SoundManager.Instance != null)
+        {
+            SoundManager.Instance.PlaySurprisedCrowdSound();
+        }
+
         //Debug.Log("Die");
         if (bloodSplats.Length > 0) Destroy(Instantiate(bloodSplats[Random.Range(0, bloodSplats.Length)], transform.position, Quaternion.identity), 15f);
         if (bloodParticle) Destroy(Instantiate(bloodParticle, transform.position, Quaternion.identity), 15f);
